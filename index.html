@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Registration</title>
+    <style>
+      /* styles here */
+      body {
+        background-color: #f0f0f0;
+        padding: 0px 0px 0px 0px;
+        margin: 0px 0px 0px 0px;
+        height: 100vh;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+      }
+ 
+      .registration-form {
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 30px 20px 30px;
+        width: 300px;
+        border-radius: 10px;
+      }
+
+      #jmcpic {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+
+      h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        text-align:center;
+      }
+
+      .center {
+        display:flex;
+        flex-flow: column;
+        justify-content: center;
+      }
+
+      .error {
+        visibility: hidden;
+        color: red;
+        font-size: small;
+        text-align: right;
+      }
+
+      .inputbox {
+        display: flex;
+        flex-flow: column;
+      }
+      
+      .input {
+        font-size: medium;
+        text-indent: 10px;
+        padding: 10px 0px 10px 0px;
+        box-shadow: none;
+        border-radius: 5px;
+        border: #ccc solid 1px;
+      }
+
+      #reg {
+        font-size: medium;
+        padding: 10px 0px 10px 0px;
+        box-shadow: none;
+        background-color: #007bff;
+        padding: 10px 0px 10px 0px;
+        border: #ccc solid 1px;
+        border-radius: 5px;
+      }
+
+      #reg:hover {
+        background-color: #0056b3;
+      }
+
+      .errorborder {
+        border: red 1px solid;
+      }
+
+      #reg:disabled {
+        background-color: rgb(112, 112, 112);
+      }
+
+      @media only screen and (max-width:640px) {
+        #jmcpic {
+            visibility: hidden;
+        }
+      }
+
+      @media only screen and (max-width:380px) {
+        body {
+            background-color: #fff;
+            box-shadow: none;
+        }
+      }
+      /* TODO: use #ccc as border color of all inputs */
+      /* TODO: use #007bff as register button color */
+      /* TODO: when the register button is hovered use #0056b3 color */
+ 
+      /* HINT: to remove the shadow style of an element use box-shadow: none */
+      /* HINT: to style the button when disabled use pseudo class :disabled */
+    </style>
+  </head>
+  <body>
+    <div id="jmcpic">
+        <img class="jmc" height="300" src="jmc.png" alt="jmc" />
+    </div>
+    <div class="center">
+        <div class="registration-form">
+            <h1>User Registration</h1>
+            <div class="inputbox">
+                <input type="text" id="fname" class="input" placeholder="First Name">
+                <label id="fname_error" for="fname" class="error">Required</label>
+            </div>
+            <div class="inputbox">
+                <input type="text" id="lname" class="input" placeholder="Last Name">
+                <label id="lname_error" for="fname" class="error">Required</label>
+            </div>
+            <div class="inputbox">
+                <input type="text" id="email" class="input" placeholder="Email">
+                <label id="email_error" for="email" class="error">Required</label>
+            </div>
+            <div class="inputbox">
+                <input type="text" id="pass" class="input" placeholder="Password">
+                <label id="pass_error" for="pass" class="error">Required</label>
+            </div>
+            <div class="inputbox">
+                <input type="text" id="cpass" class="input" placeholder="Confirm Password">
+                <label id="cpass_error" for="cpass" class="error">Required</label>
+            </div>
+            <div class="inputbox">
+                <button id="reg">Register</button>
+            </div>
+        </div>
+        
+    </div>
+ 
+    <script>
+      // javascript code here
+      const fname = document.getElementById("fname");
+      const lname = document.getElementById("lname");
+      const email = document.getElementById("email");
+      const pass = document.getElementById("pass");
+      const cpass = document.getElementById("cpass");
+      const reg = document.getElementById("reg");
+
+      const ferror = document.getElementById("fname_error");
+      const lerror = document.getElementById("lname_error");
+      const eerror = document.getElementById("email_error");
+      const perror = document.getElementById("pass_error");
+      const cerror = document.getElementById("cpass_error");
+
+      fname.addEventListener("change", (event) => {
+        if (fname.value == "") {
+            fname.style.borderColor = "red";
+            ferror.style.visibility = "visible";
+            reg.setAttribute("disabled","");
+        }
+        else {
+            fname.style.borderColor = "#ccc";
+            ferror.style.visibility = "hidden";
+            enableButton();
+        }
+      });
+
+      lname.addEventListener("change", (event) => {
+        if (lname.value == "") {
+            lname.style.borderColor = "red";
+            lerror.style.visibility = "visible";
+            reg.setAttribute("disabled","");
+        }
+        else {
+            lname.style.borderColor = "#ccc";
+            lerror.style.visibility = "hidden";
+            enableButton();
+        }
+      });
+
+      email.addEventListener("change", (event) => {
+        if (email.value == "") {
+            email.style.borderColor = "red";
+            eerror.style.visibility = "visible";
+            reg.setAttribute("disabled","");
+        }
+        else {
+            email.style.borderColor = "#ccc";
+            eerror.style.visibility = "hidden";
+            enableButton();
+        }
+      });
+
+      pass.addEventListener("change", (event) => {
+        if (pass.value == "") {
+            pass.style.borderColor = "red";
+            perror.style.visibility = "visible";
+            reg.setAttribute("disabled","");
+        }
+        else {
+            pass.style.borderColor = "#ccc";
+            perror.style.visibility = "hidden";
+            enableButton();
+        }
+      });
+
+      cpass.addEventListener("change", (event) => {
+        if (cpass.value == "") {
+            cpass.style.borderColor = "red";
+            cerror.style.visibility = "visible";
+            reg.setAttribute("disabled","");
+        }
+        else if (cpass.value != pass.value) 
+        {
+            cpass.style.borderColor = "red";
+            cerror.innerText = "Password does not match";
+            cerror.style.visibility = "visible";
+            reg.setAttribute("disabled","");
+        }
+        else {
+            cpass.style.borderColor = "#ccc";
+            cerror.style.visibility = "hidden";
+            enableButton();
+        }
+      });
+
+      function enableButton() {
+        if (fname.value != "" && lname.value != "" && email.value != "" && pass.value != "" && cpass.value != "" &&  cpass.value == pass.value) {
+            reg.removeAttribute("disabled");
+        }
+      }
+
+    </script>
+  </body>
+</html>
